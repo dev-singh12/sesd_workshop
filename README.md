@@ -1,114 +1,103 @@
-# SESD Workshop – Backend API
+# SESD Workshop - Contact Management API
 
-A production-ready backend service built using **Node.js**, **TypeScript**, **Express**, and **Prisma ORM**, following a clean and scalable architecture.
+This is a robust RESTful API designed for efficient contact management, built during the SESD Workshop. It features secure user authentication and comprehensive CRUD operations for handling contacts.
 
----
+## 🚀 Features
 
-## 🚀 Tech Stack
+- **User Authentication**:
+  - Secure interaction with JWT (JSON Web Tokens).
+  - Password protection using Bcrypt hashing.
+  - Registration and Login endpoints.
+- **Contact Management**:
+  - Create, Read, Update, and Delete (CRUD) contacts.
+  - Search and organize personal or professional contacts.
+- **Validation**: Robust input validation using `express-validator`.
+- **Security**: Integrated `helmet` for HTTP header security and `cors` for cross-origin resource sharing.
+- **Database**: Reliable data persistence with PostgreSQL and Prisma ORM.
 
-- Node.js
-- TypeScript
-- Express.js
-- Prisma ORM
-- PostgreSQL / MySQL
-- JWT Authentication
-- ESLint & Prettier
+## 🛠️ Tech Stack
 
----
+- **Runtime**: [Node.js](https://nodejs.org/)
+- **Framework**: [Express.js](https://expressjs.com/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Database**: [PostgreSQL](https://www.postgresql.org/)
+- **ORM**: [Prisma](https://www.prisma.io/)
+- **Authentication**: JSON Web Token (JWT) & Bcrypt
 
-## 📁 Project Structure
+## ⚙️ Prerequisites
 
-SESD_WORKSHOP/
-├── prisma/
-│ └── schema.prisma
-│
-├── src/
-│ ├── controllers/
-│ │ ├── auth_controller.ts
-│ │ └── contact_controller.ts
-│ │
-│ ├── middlewares/
-│ ├── routes/
-│ ├── services/
-│ ├── utils/
-│ ├── prisma_logic/
-│ ├── generated/
-│ ├── app.ts
-│ └── server.ts
-│
-├── dist/
-├── .env
-├── .gitignore
-├── package.json
-├── tsconfig.json
-└── prisma.config.ts
+Ensure you have the following installed on your machine:
 
+- **Node.js** (v18 or higher recommended)
+- **npm** (Node Package Manager)
+- **PostgreSQL** (Running locally or via a cloud provider like Neon/Supabase)
 
----
+## 📦 Installation & Setup
 
-## ⚙️ Environment Variables
+1.  **Clone the repository**
 
-Create a `.env` file in the root directory:
+    ```bash
+    git clone <repository_url>
+    cd sesd_workshop
+    ```
 
-```env
-PORT=5000
-DATABASE_URL="postgresql://user:password@localhost:5432/dbname"
-JWT_SECRET="your_jwt_secret"
-📦 Installation
-git clone https://github.com/dev-singh12/sesd_workshop.git
-cd sesd_workshop
-npm install
-🛠 Prisma Setup
-npx prisma generate
-npx prisma migrate dev --name init
-Prisma Studio:
+2.  **Install dependencies**
 
-npx prisma studio
-▶️ Running the Server
-Development
-npm run dev
-Production
-npm run build
-npm start
-🔌 Architecture Overview
-Controllers – Handle HTTP requests and responses
+    ```bash
+    npm install
+    ```
 
-Services – Business logic layer
+3.  **Environment Configuration**
+    Create a `.env` file in the root directory and configure your valid connection string and secrets:
 
-Prisma Logic – Database operations
+    ```env
+    DATABASE_URL="postgresql://user:password@localhost:5432/sesd_workshop?schema=public"
+    JWT_SECRET="your_super_secret_key"
+    PORT=8080
+    ```
 
-Routes – Route definitions and mappings
+4.  **Database Setup**
+    Run the Prisma migrations to create the database tables:
 
-🔐 Authentication
-JWT-based authentication
+    ```bash
+    npx prisma migrate dev --name init
+    ```
 
-Authorization via Authorization: Bearer <token>
+5.  **Start the server**
 
-Middleware-protected routes
+    ```bash
+    # Development mode (with hot-reload)
+    npm run dev
 
-🧪 Best Practices
-Strict TypeScript typing
+    # Production build
+    npm run build
+    npm start
+    ```
 
-Layered architecture
+## 🔌 API Endpoints
 
-Type-safe DB access using Prisma
+### Authentication
 
-Environment-based configuration
+| Method | Endpoint       | Description             |
+| :----- | :------------- | :---------------------- |
+| `POST` | `/auth/signup` | Register a new user     |
+| `POST` | `/auth/login`  | Login and receive a JWT |
 
-Clean separation of concerns
+### Contacts (Requires Auth)
 
-📌 Future Enhancements
-API documentation (Swagger)
+| Method   | Endpoint        | Description                       |
+| :------- | :-------------- | :-------------------------------- |
+| `GET`    | `/contacts`     | Retrieve all contacts             |
+| `GET`    | `/contacts/:id` | Get details of a specific contact |
+| `POST`   | `/contacts`     | Create a new contact              |
+| `PUT`    | `/contacts/:id` | Update an existing contact        |
+| `DELETE` | `/contacts/:id` | Delete a contact                  |
 
-Unit & integration testing
+## 🤝 Contributing
 
-Role-based access control
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-Logging and rate limiting
+## 📄 License
 
-CI/CD pipeline
-
-👨‍💻 Author
-Dev Singh
-Backend Developer | Computer Science Undergraduate
+This project is licensed under the ISC License.
 
